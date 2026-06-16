@@ -13,7 +13,7 @@ import { faqItems } from '../data/faq'
 const FAQ = () => (
   <Box component="section" id="faq" py={{ xs: 8, md: 12 }}>
     <Container maxWidth="lg">
-      <SectionTitle title="FAQ" subtitle="Часто задаваемые вопросы" />
+      <SectionTitle title="FAQ" subtitle="Ответы на частые вопросы перед первой тренировкой." />
       {faqItems.map(item => (
         <Accordion key={item.question}>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>

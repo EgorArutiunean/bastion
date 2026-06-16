@@ -15,6 +15,9 @@ import {
   Box,
 } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
+import { assetUrl } from '../utils/assets'
+
+const logoSrc = assetUrl('old-site/navbar-logo.svg')
 
 export interface NavLink {
   label: string
@@ -42,22 +45,44 @@ const Navigation = ({ links }: NavigationProps) => {
       >
         <Container maxWidth="lg">
           <Toolbar disableGutters sx={{ minHeight: 72 }}>
-            <Typography
-              variant="h6"
+            <Box
               component="a"
               href="#hero"
               sx={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 1.25,
                 mr: 2,
                 textDecoration: 'none',
                 color: 'primary.main',
-                fontWeight: 700,
-                letterSpacing: 1,
               }}
             >
-              BASTION BJJ
-            </Typography>
+              <Box
+                component="img"
+                src={logoSrc}
+                alt=""
+                sx={{
+                  display: { xs: 'none', sm: 'block' },
+                  width: 142,
+                  height: 'auto',
+                  maxHeight: 34,
+                  objectFit: 'contain',
+                }}
+              />
+              <Typography
+                variant="h6"
+                component="span"
+                sx={{
+                  fontWeight: 800,
+                  letterSpacing: 1,
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                BASTION BJJ
+              </Typography>
+            </Box>
             <Box sx={{ flexGrow: 1 }} />
-            <Stack direction="row" spacing={1} sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <Stack direction="row" spacing={0.5} sx={{ display: { xs: 'none', md: 'flex' } }}>
               {links.map(link => (
                 <Button
                   key={link.href}
@@ -82,7 +107,7 @@ const Navigation = ({ links }: NavigationProps) => {
         </Container>
       </AppBar>
       <Drawer anchor="right" open={open} onClose={() => setOpen(false)}>
-        <Box sx={{ width: 240 }} role="presentation" onClick={() => setOpen(false)}>
+        <Box sx={{ width: 260 }} role="presentation" onClick={() => setOpen(false)}>
           <List>
             {links.map(link => (
               <ListItem key={link.href} disablePadding>

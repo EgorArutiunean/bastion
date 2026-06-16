@@ -7,17 +7,19 @@ import About from './sections/About'
 import Coaches from './sections/Coaches'
 import Schedule from './sections/Schedule'
 import Pricing from './sections/Pricing'
+import Gallery from './sections/Gallery'
 import Location from './sections/Location'
 import FAQ from './sections/FAQ'
 import Contacts from './sections/Contacts'
 import Footer from './sections/Footer'
 
 const navLinks: NavLink[] = [
-  { label: 'О нас', href: '#about' },
-  { label: 'Тренеры', href: '#coaches' },
-  { label: 'Расписание', href: '#schedule' },
+  { label: 'О секции', href: '#about' },
+  { label: 'Подход', href: '#coaches' },
+  { label: 'Группы', href: '#schedule' },
   { label: 'Стоимость', href: '#pricing' },
-  { label: 'Адрес', href: '#location' },
+  { label: 'Фото', href: '#gallery' },
+  { label: 'Адреса', href: '#location' },
   { label: 'FAQ', href: '#faq' },
   { label: 'Контакты', href: '#contacts' },
 ]
@@ -32,6 +34,7 @@ const App = () => (
       <Coaches />
       <Schedule />
       <Pricing />
+      <Gallery />
       <Location />
       <FAQ />
       <Contacts />

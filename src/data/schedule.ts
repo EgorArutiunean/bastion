@@ -1,57 +1,55 @@
-export interface SessionSlot {
-  time: string
-  focus: string
-  level: 'Новички' | 'Опытные' | 'Смешанная группа'
+import type { City } from './site'
+import { clubLocations, formatLocation } from './site'
+import { assetUrl } from '../utils/assets'
+
+export interface TrainingGroup {
+  title: string
+  city: City
+  address: string
+  ages: string
+  schedule: string[]
+  image: string
 }
 
-export interface DaySchedule {
-  day: string
-  sessions: SessionSlot[]
+const benderyLocation = clubLocations.find(location => location.city === 'Бендеры')
+const tiraspolLocation = clubLocations.find(location => location.city === 'Тирасполь')
+
+if (!benderyLocation || !tiraspolLocation) {
+  throw new Error('Training locations are not configured')
 }
 
-export const weeklySchedule: DaySchedule[] = [
+export const trainingGroups: TrainingGroup[] = [
   {
-    day: 'Понедельник',
-    sessions: [
-      { time: '07:30 — 09:00', focus: 'Партер + растяжка', level: 'Смешанная группа' },
-      { time: '19:00 — 20:30', focus: 'Основы гарда', level: 'Новички' },
-      { time: '20:30 — 22:00', focus: 'Спарринги + разбор', level: 'Опытные' },
+    title: 'Детская группа Бендеры',
+    city: 'Бендеры',
+    address: formatLocation(benderyLocation),
+    ages: '5-8 и 8-16 лет',
+    schedule: [
+      '5-8 лет: понедельник, среда, пятница 16:00-17:30',
+      '8-16 лет: понедельник, среда, пятница 17:30-19:00',
     ],
+    image: assetUrl('old-site/litben.png'),
   },
   {
-    day: 'Вторник',
-    sessions: [
-      { time: '18:30 — 20:00', focus: 'Борьба в стойке', level: 'Смешанная группа' },
-      { time: '20:00 — 21:30', focus: 'Но-ги контроль', level: 'Опытные' },
+    title: 'Детская группа Тирасполь',
+    city: 'Тирасполь',
+    address: formatLocation(tiraspolLocation),
+    ages: '5-8 и 8-14 лет',
+    schedule: [
+      '5-8 лет: вторник, четверг 16:30-17:30; суббота 15:30-17:00',
+      '8-14 лет: вторник, четверг 17:30-19:00; суббота 15:30-17:00',
     ],
+    image: assetUrl('old-site/littir.png'),
   },
   {
-    day: 'Среда',
-    sessions: [
-      { time: '07:30 — 09:00', focus: 'Но-ги баланс + переходы', level: 'Смешанная группа' },
-      { time: '19:00 — 20:30', focus: 'Техника из сайд-контроля', level: 'Новички' },
-      { time: '20:30 — 22:00', focus: 'Позиционные спарринги', level: 'Опытные' },
+    title: 'Взрослая группа Тирасполь',
+    city: 'Тирасполь',
+    address: formatLocation(tiraspolLocation),
+    ages: '16-99 лет',
+    schedule: [
+      'Вторник, четверг 19:20-21:00',
+      'Суббота 17:00-19:00',
     ],
-  },
-  {
-    day: 'Четверг',
-    sessions: [
-      { time: '18:30 — 20:00', focus: 'Физподготовка и борьба', level: 'Смешанная группа' },
-      { time: '20:00 — 21:30', focus: 'Дриблинг + гвард-пассинг', level: 'Опытные' },
-    ],
-  },
-  {
-    day: 'Пятница',
-    sessions: [
-      { time: '19:00 — 20:30', focus: 'Комбо для новичков', level: 'Новички' },
-      { time: '20:30 — 22:00', focus: 'Свободные спарринги', level: 'Смешанная группа' },
-    ],
-  },
-  {
-    day: 'Суббота',
-    sessions: [
-      { time: '11:00 — 12:30', focus: 'Техника + спарринги', level: 'Смешанная группа' },
-      { time: '12:30 — 13:15', focus: 'Kids/Teens BJJ', level: 'Новички' },
-    ],
+    image: assetUrl('old-site/adtir.png'),
   },
 ]

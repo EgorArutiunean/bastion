@@ -1,6 +1,7 @@
-import { Box, Container, Stack, Typography, IconButton } from '@mui/material'
-import TelegramIcon from '@mui/icons-material/Telegram'
+import { Box, Container, IconButton, Stack, Typography } from '@mui/material'
 import InstagramIcon from '@mui/icons-material/Instagram'
+import PhoneIcon from '@mui/icons-material/Phone'
+import { siteContact } from '../data/site'
 
 const Footer = () => (
   <Box component="footer" py={5} borderTop="1px solid rgba(255,255,255,0.08)">
@@ -12,23 +13,22 @@ const Footer = () => (
         spacing={2}
       >
         <Typography variant="body2" color="text.secondary">
-          © {new Date().getFullYear()} BASTION BJJ. Все права защищены.
+          © {new Date().getFullYear()} Bastion BJJ. Бразильское джиу-джитсу в Бендерах и
+          Тирасполе.
         </Typography>
         <Stack direction="row" spacing={1}>
           <IconButton
             color="primary"
             component="a"
-            href="https://t.me/bjjclub"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Telegram"
+            href={siteContact.phoneHref}
+            aria-label="Позвонить"
           >
-            <TelegramIcon />
+            <PhoneIcon />
           </IconButton>
           <IconButton
             color="primary"
             component="a"
-            href="https://instagram.com"
+            href={siteContact.instagram}
             target="_blank"
             rel="noreferrer"
             aria-label="Instagram"

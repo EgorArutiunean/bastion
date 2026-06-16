@@ -7,8 +7,8 @@ const Coaches = () => (
   <Box component="section" id="coaches" py={{ xs: 8, md: 12 }}>
     <Container maxWidth="lg">
       <SectionTitle
-        title="Тренеры"
-        subtitle="Вся команда сертифицирована IBJJF и регулярно выступает на турнирах."
+        title="Подход"
+        subtitle="Тренировки строятся вокруг понятной базы, дисциплины и безопасного прогресса для новичков, детей и взрослых."
       />
       <Grid container spacing={3}>
         {coaches.map(coach => (
@@ -18,7 +18,7 @@ const Coaches = () => (
                 <Avatar
                   src={coach.avatar}
                   alt={coach.name}
-                  sx={{ width: 80, height: 80, mb: 2 }}
+                  sx={{ width: 80, height: 80, mb: 2, bgcolor: 'primary.main', color: 'black' }}
                 />
                 <Typography variant="h6">{coach.name}</Typography>
                 <Chip label={coach.belt} color="primary" size="small" sx={{ mt: 1, mb: 2 }} />

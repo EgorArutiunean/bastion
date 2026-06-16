@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles'
-import { amber, green, grey } from '@mui/material/colors'
+import { amber, red, grey } from '@mui/material/colors'
 
 const theme = createTheme({
   palette: {
@@ -9,7 +9,7 @@ const theme = createTheme({
       contrastText: '#040404',
     },
     secondary: {
-      main: green[400],
+      main: red[400],
     },
     background: {
       default: '#050505',
@@ -23,27 +23,30 @@ const theme = createTheme({
   typography: {
     fontFamily: '"Inter","Roboto","Helvetica","Arial",sans-serif',
     h1: {
-      fontSize: 'clamp(2.5rem, 4vw, 4rem)',
-      fontWeight: 700,
+      fontSize: 'clamp(2.6rem, 6vw, 5.6rem)',
+      fontWeight: 800,
+      lineHeight: 0.98,
+      letterSpacing: 0,
     },
     h2: {
       fontSize: 'clamp(1.8rem, 3vw, 3rem)',
-      fontWeight: 600,
+      fontWeight: 700,
+      letterSpacing: 0,
     },
     body1: {
       color: grey[300],
     },
   },
   shape: {
-    borderRadius: 14,
+    borderRadius: 8,
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
           textTransform: 'none',
-          fontWeight: 600,
-          borderRadius: 999,
+          fontWeight: 700,
+          borderRadius: 8,
         },
       },
     },

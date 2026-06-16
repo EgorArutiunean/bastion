@@ -1,37 +1,53 @@
-import { Box, Container, Card, CardContent, Typography, Divider, Stack, Chip } from '@mui/material'
+import { Box, Container, Card, CardContent, Typography, Stack, Chip, Avatar } from '@mui/material'
 import Grid from '@mui/material/GridLegacy'
 import SectionTitle from '../components/SectionTitle'
-import { weeklySchedule } from '../data/schedule'
+import { trainingGroups } from '../data/schedule'
 
 const Schedule = () => (
   <Box component="section" id="schedule" py={{ xs: 8, md: 12 }}>
     <Container maxWidth="lg">
       <SectionTitle
-        title="Расписание"
-        subtitle="Выбирайте удобное время — утренние, вечерние и субботние занятия."
+        title="Группы и расписание"
+        subtitle="Данные перенесены из старой версии сайта: детские группы в Бендерах и Тирасполе, взрослая группа в Тирасполе."
       />
       <Grid container spacing={3}>
-        {weeklySchedule.map(day => (
-          <Grid item xs={12} md={6} key={day.day}>
-            <Card variant="outlined">
+        {trainingGroups.map(group => (
+          <Grid item xs={12} md={4} key={group.title}>
+            <Card variant="outlined" sx={{ height: '100%' }}>
               <CardContent>
-                <Typography variant="h6" gutterBottom>
-                  {day.day}
-                </Typography>
-                <Stack spacing={2}>
-                  {day.sessions.map((session, index) => (
-                    <Box key={`${day.day}-${session.time}`}>
-                      <Typography variant="subtitle2">{session.time}</Typography>
-                      <Typography variant="body2">{session.focus}</Typography>
-                      <Chip
-                        label={session.level}
-                        size="small"
-                        color="secondary"
-                        sx={{ mt: 0.5 }}
-                      />
-                      {index !== day.sessions.length - 1 && <Divider sx={{ mt: 1.5 }} />}
-                    </Box>
-                  ))}
+                <Stack spacing={2} height="100%">
+                  <Avatar
+                    src={group.image}
+                    alt=""
+                    sx={{ width: 88, height: 88, bgcolor: 'background.default' }}
+                  />
+                  <Box>
+                    <Chip label={group.city} size="small" color="primary" sx={{ mb: 1.5 }} />
+                    <Typography variant="h5" gutterBottom>
+                      {group.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {group.address}
+                    </Typography>
+                  </Box>
+                  <Box>
+                    <Typography variant="subtitle2" color="primary.main" gutterBottom>
+                      Возраст
+                    </Typography>
+                    <Typography variant="body2">{group.ages}</Typography>
+                  </Box>
+                  <Box>
+                    <Typography variant="subtitle2" color="primary.main" gutterBottom>
+                      Время
+                    </Typography>
+                    <Stack component="ul" spacing={1} sx={{ pl: 2, m: 0 }}>
+                      {group.schedule.map(line => (
+                        <Typography component="li" variant="body2" key={line}>
+                          {line}
+                        </Typography>
+                      ))}
+                    </Stack>
+                  </Box>
                 </Stack>
               </CardContent>
             </Card>

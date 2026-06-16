@@ -1,23 +1,34 @@
-import { Box } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
+import { assetUrl } from '../utils/assets'
+import { clubLocations, formatLocation } from '../data/site'
+
+const beltsBackground = assetUrl('old-site/belts-bg.png')
 
 const MapPlaceholder = () => (
   <Box
     sx={{
-      borderRadius: 3,
-      border: '1px dashed rgba(255,255,255,0.3)',
-      minHeight: { xs: 220, sm: 300 },
-      background:
-        'radial-gradient(circle at 20% 20%, rgba(255,193,7,0.25), rgba(0,0,0,0.8))',
+      borderRadius: 2,
+      border: '1px solid rgba(255,255,255,0.16)',
+      minHeight: { xs: 260, sm: 380 },
+      backgroundImage:
+        `linear-gradient(rgba(5,5,5,0.5), rgba(5,5,5,0.8)), url(${beltsBackground})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      color: 'text.secondary',
-      fontWeight: 600,
-      letterSpacing: 2,
-      textTransform: 'uppercase',
+      p: 3,
+      textAlign: 'center',
     }}
   >
-    Карта
+    <Stack spacing={1} maxWidth={460}>
+      <Typography variant="h5">Бендеры и Тирасполь</Typography>
+      {clubLocations.map(location => (
+        <Typography color="text.secondary" key={location.city}>
+          {location.city}: {formatLocation(location)}
+        </Typography>
+      ))}
+    </Stack>
   </Box>
 )
 

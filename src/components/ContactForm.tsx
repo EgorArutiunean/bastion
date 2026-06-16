@@ -1,9 +1,11 @@
-import { useState } from 'react'
-import { Box, Stack, TextField, Button, Snackbar, Alert } from '@mui/material'
+import { useMemo, useState } from 'react'
+import { Alert, Box, Button, MenuItem, Snackbar, Stack, TextField } from '@mui/material'
+import { cities } from '../data/site'
 
 interface FormValues {
   name: string
   phone: string
+  city: string
   message: string
 }
 
@@ -12,6 +14,7 @@ type FormErrors = Partial<Record<keyof FormValues, string>>
 const initialValues: FormValues = {
   name: '',
   phone: '',
+  city: '',
   message: '',
 }
 
@@ -20,18 +23,31 @@ const ContactForm = () => {
   const [errors, setErrors] = useState<FormErrors>({})
   const [sent, setSent] = useState(false)
 
+  const applicationText = useMemo(
+    () =>
+      [
+        'Заявка на пробную тренировку Bastion BJJ',
+        `Имя: ${values.name}`,
+        `Контакт: ${values.phone}`,
+        `Город: ${values.city}`,
+        `Комментарий: ${values.message}`,
+      ].join('\n'),
+    [values],
+  )
+
   const validate = (): FormErrors => {
     const nextErrors: FormErrors = {}
     if (!values.name.trim()) {
       nextErrors.name = 'Введите имя'
     }
     if (!values.phone.trim()) {
-      nextErrors.phone = 'Укажите телефон'
-    } else if (values.phone.replace(/\D/g, '').length < 10) {
-      nextErrors.phone = 'Номер выглядит некорректно'
+      nextErrors.phone = 'Укажите телефон или Telegram'
+    }
+    if (!values.city.trim()) {
+      nextErrors.city = 'Выберите город'
     }
     if (!values.message.trim()) {
-      nextErrors.message = 'Напишите пару слов о цели'
+      nextErrors.message = 'Напишите возраст, опыт или удобные дни'
     }
     return nextErrors
   }
@@ -47,6 +63,7 @@ const ContactForm = () => {
     const nextErrors = validate()
     setErrors(nextErrors)
     if (Object.keys(nextErrors).length === 0) {
+      navigator.clipboard?.writeText(applicationText)
       setValues(initialValues)
       setSent(true)
     }
@@ -66,7 +83,7 @@ const ContactForm = () => {
             fullWidth
           />
           <TextField
-            label="Телефон"
+            label="Телефон или Telegram"
             value={values.phone}
             onChange={handleChange('phone')}
             required
@@ -75,7 +92,23 @@ const ContactForm = () => {
             fullWidth
           />
           <TextField
-            label="Сообщение"
+            select
+            label="Город"
+            value={values.city}
+            onChange={handleChange('city')}
+            required
+            error={Boolean(errors.city)}
+            helperText={errors.city}
+            fullWidth
+          >
+            {cities.map(city => (
+              <MenuItem value={city} key={city}>
+                {city}
+              </MenuItem>
+            ))}
+          </TextField>
+          <TextField
+            label="Комментарий"
             multiline
             minRows={3}
             value={values.message}
@@ -83,21 +116,22 @@ const ContactForm = () => {
             required
             error={Boolean(errors.message)}
             helperText={errors.message}
+            placeholder="Возраст, опыт, удобные дни"
             fullWidth
           />
           <Button type="submit" size="large" variant="contained">
-            Отправить заявку
+            Скопировать заявку
           </Button>
         </Stack>
       </Box>
       <Snackbar
         open={sent}
-        autoHideDuration={4000}
+        autoHideDuration={4500}
         onClose={() => setSent(false)}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
         <Alert severity="success" variant="filled" onClose={() => setSent(false)}>
-          Заявка отправлена
+          Заявка скопирована. Отправьте ее по телефону, в Instagram или VK.
         </Alert>
       </Snackbar>
     </>
