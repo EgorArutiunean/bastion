@@ -10,7 +10,7 @@ const Location = () => (
     <Container maxWidth="lg">
       <SectionTitle
         title="Адреса"
-        subtitle="Две рабочие площадки из старой версии сайта: спортивный комплекс «Орбита» в Бендерах и ТЦ «Тирасполь»."
+        subtitle="Занятия проходят в двух городах: в спортивном комплексе «Орбита» в Бендерах и в ТЦ «Тирасполь»."
       />
       <Grid container spacing={4} alignItems="stretch">
         <Grid item xs={12} md={5}>

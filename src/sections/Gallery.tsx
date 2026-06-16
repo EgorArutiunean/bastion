@@ -8,7 +8,7 @@ const Gallery = () => (
     <Container maxWidth="lg">
       <SectionTitle
         title="Фото клуба"
-        subtitle="Реальные фотографии из старой версии сайта: команда, детские группы, соревнования и тренировки."
+        subtitle="Фотографии с тренировок, соревнований и командных занятий Bastion BJJ."
       />
       <Grid container spacing={3}>
         {galleryItems.map(item => (
