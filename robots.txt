@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://egorarutiunean.github.io/bastion/sitemap.xml
