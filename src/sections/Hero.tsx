@@ -1,4 +1,4 @@
-import { Box, Container, Stack, Typography, Button, Chip } from '@mui/material'
+import { Box, Button, Chip, Container, Stack, Typography } from '@mui/material'
 import { assetUrl } from '../utils/assets'
 
 const heroImage = assetUrl('old-site/header-bg.jpg')
@@ -55,8 +55,17 @@ const Hero = () => (
             Группы и расписание
           </Button>
         </Stack>
-        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={4} pt={2}>
-          <Box>
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          spacing={{ xs: 3, sm: 4 }}
+          pt={2}
+          sx={{
+            maxWidth: 720,
+            justifyContent: { sm: 'space-between' },
+            textAlign: 'center',
+          }}
+        >
+          <Box sx={{ flex: 1 }}>
             <Typography variant="h4" component="p" color="primary.main" fontWeight={800}>
               3
             </Typography>
@@ -64,17 +73,29 @@ const Hero = () => (
               группы по возрасту
             </Typography>
           </Box>
-          <Box>
-            <Typography variant="h4" component="p" color="primary.main" fontWeight={800}>
-              0 р
+          <Box sx={{ flex: 1 }}>
+            <Typography
+              variant="h4"
+              component="p"
+              color="primary.main"
+              fontWeight={800}
+              sx={{ whiteSpace: 'nowrap' }}
+            >
+              Бесплатно
             </Typography>
             <Typography variant="body2" color="text.secondary">
               первая тренировка
             </Typography>
           </Box>
-          <Box>
-            <Typography variant="h4" component="p" color="primary.main" fontWeight={800}>
-              +373
+          <Box sx={{ flex: 1 }}>
+            <Typography
+              variant="h4"
+              component="p"
+              color="primary.main"
+              fontWeight={800}
+              sx={{ fontSize: { xs: 28, sm: 34 }, whiteSpace: 'nowrap' }}
+            >
+              +37377898942
             </Typography>
             <Typography variant="body2" color="text.secondary">
               запись по телефону
