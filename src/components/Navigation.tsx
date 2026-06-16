@@ -73,6 +73,7 @@ const Navigation = ({ links }: NavigationProps) => {
                 variant="h6"
                 component="span"
                 sx={{
+                  display: { xs: 'inline', sm: 'none' },
                   fontWeight: 800,
                   letterSpacing: 1,
                   whiteSpace: 'nowrap',

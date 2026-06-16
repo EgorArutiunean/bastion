@@ -48,7 +48,7 @@ export const trainingGroups: TrainingGroup[] = [
     ages: '16-99 лет',
     schedule: [
       'Вторник, четверг 19:20-21:00',
-      'Суббота 17:00-19:00',
+      'Суббота 17:20-19:00',
     ],
     image: assetUrl('old-site/adtir.png'),
   },

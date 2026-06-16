@@ -1,7 +1,7 @@
 import { Box, Button, Chip, Container, Stack, Typography } from '@mui/material'
 import { assetUrl } from '../utils/assets'
 
-const heroImage = assetUrl('old-site/header-bg.jpg')
+const heroImage = assetUrl('old-site/header-bg.png')
 
 const Hero = () => (
   <Box
@@ -14,15 +14,6 @@ const Hero = () => (
       alignItems: 'center',
       py: { xs: 10, md: 14 },
       overflow: 'hidden',
-      '&::before': {
-        content: '""',
-        position: 'absolute',
-        inset: 0,
-        backgroundImage: `url(${heroImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: { xs: '58% center', md: 'center' },
-        opacity: 0.74,
-      },
       '&::after': {
         content: '""',
         position: 'absolute',
@@ -32,6 +23,29 @@ const Hero = () => (
       },
     }}
   >
+    <Box
+      component="img"
+      src={heroImage}
+      alt=""
+      aria-hidden="true"
+      onError={(event) => {
+        const image = event.currentTarget
+        if (image.dataset.fallbackApplied) {
+          return
+        }
+        image.dataset.fallbackApplied = 'true'
+        image.src = '/old-site/header-bg.png'
+      }}
+      sx={{
+        position: 'absolute',
+        inset: 0,
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+        objectPosition: { xs: '58% center', md: 'center' },
+        opacity: 0.78,
+      }}
+    />
     <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
       <Stack spacing={3}>
         <Chip
@@ -81,7 +95,7 @@ const Hero = () => (
               fontWeight={800}
               sx={{ whiteSpace: 'nowrap' }}
             >
-              Бесплатно
+              бесплатно
             </Typography>
             <Typography variant="body2" color="text.secondary">
               первая тренировка
@@ -95,7 +109,7 @@ const Hero = () => (
               fontWeight={800}
               sx={{ fontSize: { xs: 28, sm: 34 }, whiteSpace: 'nowrap' }}
             >
-              +37377898942
+              77898942
             </Typography>
             <Typography variant="body2" color="text.secondary">
               запись по телефону
